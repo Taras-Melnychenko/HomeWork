@@ -1,6 +1,7 @@
 package Module5;
 
 
+import java.util.Arrays;
 
 public class BookingComAPI implements API {
     private Room[] rooms = new Room[5];
@@ -23,8 +24,8 @@ public class BookingComAPI implements API {
     public int counter(int price, int person, String hotel, String city) {
         int counter = 0;
         for (int i = 0; i < rooms.length; i++){
-            if (rooms[i].getPrice() == price && rooms[i].getPerson() == person && rooms[i].getCityName() == city &&
-                    rooms[i].getHotelName() == hotel) counter++; //нахожу количество совпадений
+            if (rooms[i].getPrice() == price && rooms[i].getPerson() == person && rooms[i].getCityName().equalsIgnoreCase(city) && rooms[i].getHotelName().equalsIgnoreCase(hotel) /*rooms[i].getCityName() == city &&
+                    rooms[i].getHotelName() == hotel*/) counter++; //нахожу количество совпадений
         }
         return counter;
     }
@@ -35,13 +36,20 @@ public class BookingComAPI implements API {
         Room[] roomsFouded = new Room[counter];// создаю массив который буду возвращать необходимого размера
         int j = 0;// счетчик для массива roomsFounded
         for (int i = 0; i < rooms.length; i++){
-            if (rooms[i].getPrice() == price && rooms[i].getPerson() == person && rooms[i].getCityName() == city &&
-                    rooms[i].getHotelName() == hotel){
+            if (rooms[i].getPrice() == price && rooms[i].getPerson() == person && rooms[i].getCityName().equalsIgnoreCase(city) && rooms[i].getHotelName().equalsIgnoreCase(hotel) /*rooms[i].getCityName() == city &&
+                    rooms[i].getHotelName() == hotel*/){
                 roomsFouded[j] = rooms[i];// записую нужные мне значения в массив
                 j++;// увеличиваю счетчик
             }
         }
         return roomsFouded;
+    }
+
+    @Override
+    public String toString() {
+        return "BookingComAPI{" +
+                "rooms=" + Arrays.toString(rooms) +
+                '}';
     }
 
     @Override
