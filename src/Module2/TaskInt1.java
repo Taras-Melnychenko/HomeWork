@@ -1,5 +1,8 @@
 package Module2;
 
+import Module6.ArrayUtils;
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -180,22 +183,38 @@ public class TaskInt1 {
 
 
     public static void main(String[] args) {
-        int[] array = {289, -53, 15, -45, -75, -43, -86, 1, 1111, 121};
+        int[] array = {280, -54, 16, -45, -75, -43, -86, 1, 1111, 120};
         System.out.println("//////Task 2.1 Sum///////");
-        System.out.println(sum(array));
+//       System.out.println(sum(array));
+        System.out.println(ArrayUtils.sum(array));
         System.out.println("//////Task 2.2 Max///////");
-        System.out.println(max(array));
+//        System.out.println(max(array));
+        System.out.println(ArrayUtils.max(array));
         System.out.println("//////Task 2.2 Min///////");
-        System.out.println(min(array));
+//        System.out.println(min(array));
+        System.out.println(ArrayUtils.min(array));
         System.out.println("//////Task 2.3 Max Positive///////");
         if (maxPositive(array) == 0) System.out.println("Positive Number not found");
-        else System.out.println("We have at list one positive number"+"..."+maxPositive(array));
+//        else System.out.println("We have at list one positive number"+"..."+maxPositive(array));
+        else System.out.println("We have at list one positive number"+"..."+ArrayUtils.maxPositive(array));
         System.out.println("//////Task 2.4 Multiplication///////");
-        System.out.println(multiplication(array));
+        System.out.println(ArrayUtils.multiplication(array));
+//        System.out.println(multiplication(array));
         System.out.println("//////Task 2.5 Modulus first nad last element///////");
-        System.out.println("Intrger part..." + modules(array) + "Residue..." +residue(array));
+//        System.out.println("Intrger part..." + modules(array) + "Residue..." +residue(array));
+        System.out.println("Intrger part..." + ArrayUtils.modules(array) + "Residue..." +ArrayUtils.residue(array));
         System.out.println("//////Task 2.6 Second max element///////");
-        System.out.println(secondMax(array, max(array)));
+ //       System.out.println(secondMax(array, max(array)));
+        System.out.println("////////6.1 Reverse ///////////");
+        for (int i = 0; i < array.length; i++){
+            System.out.print(ArrayUtils.reverse(array)[i] + "  ");
+        }
+        System.out.println();
+        System.out.println("/////////6.2 Find Even Elements/////////");
+        for (int i = 0; i < ArrayUtils.findEvenElements(array).length; i++){
+            System.out.print(ArrayUtils.findEvenElements(array)[i] + "  ");
+        }
+        System.out.println();
         double[] array1 = {289.15, -53.1, 15.7, -45.56, -75.2, -43.2, -86.7, 1.09, 1111.75, 121.1};
         System.out.println("//////Task 2.1 Sum///////");
         System.out.println(sum(array1));
