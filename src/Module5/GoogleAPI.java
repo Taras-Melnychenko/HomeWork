@@ -6,16 +6,11 @@ import java.util.Date;
 public class GoogleAPI implements API {
     private Room[] rooms1 = new Room[5];
     public GoogleAPI() {
-        Room room1 = new Room(11, 200, 3, new Date(), "Hotel1", "Kyiv");
-        rooms1[0] = room1;
-        Room room2 = new Room(21, 250, 4, new Date(), "Hotel2", "Odessa");
-        rooms1[1] = room2;
-        Room room3 = new Room(31, 275, 5, new Date(), "Hotel3", "Lviv");
-        rooms1[2] = room3;
-        Room room4 = new Room(41, 300, 5, new Date(), "Hotel4", "Kyiv");
-        rooms1[3] = room4;
-        Room room5 = new Room(51, 200, 3, new Date(), "Hotel1", "Kyiv");
-        rooms1[4] = room5;
+        rooms1[0] = new Room(16, 250, 2, new Date(), "Dnister", "Ukraine");
+        rooms1[1] = new Room(17, 100, 2, new Date(),"A", "A");
+        rooms1[2] = new Room(18, 150, 2, new Date(),"D", "S");
+        rooms1[3] = new Room(19, 2050, 2,new Date(), "B", "D");
+        rooms1[4] = new Room(20, 1200, 2,new Date(), "H", "f");
     }
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {

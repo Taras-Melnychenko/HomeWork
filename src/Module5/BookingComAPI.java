@@ -7,17 +7,13 @@ import java.util.Date;
 public class BookingComAPI implements API {
     private Room[] rooms2 = new Room[5];
 
-    public BookingComAPI(){
-        Room room1 = new Room(11, 200, 3, new Date(), "Hotel1", "Kyiv");
-        rooms2[0] = room1;
-        Room room2 = new Room(21, 250, 4, new Date(), "Hotel2", "Odessa");
-        rooms2[1] = room2;
-        Room room3 = new Room(31, 275, 5, new Date(), "Hotel3", "Lviv");
-        rooms2[2] = room3;
-        Room room4 = new Room(41, 300, 5, new Date(), "Hotel4", "Kyiv");
-        rooms2[3] = room4;
-        Room room5 = new Room(51, 200, 3, new Date(), "Hotel1", "Kyiv");
-        rooms2[4] = room5;
+        public BookingComAPI() {
+            rooms2[0] = new Room(11, 100, 2, new Date(), "Desna", "Poltava");
+            rooms2[1] = new Room(12, 150, 2, new Date(), "Bukovel", "Bukovel");
+            rooms2[2] = new Room(13, 200, 2, new Date(), "HataMognata", "Dragobrat");
+            rooms2[3] = new Room(14, 1000, 2, new Date(), "Zaira", "Tbilisi");
+            rooms2[4] = new Room(15, 1500, 2, new Date(), "Aran", "iStambul");
+
     }
 
     @Override
