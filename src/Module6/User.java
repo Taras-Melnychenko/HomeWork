@@ -19,8 +19,8 @@ public class User {
         if (salary != user.salary) return false;
         if (balance != user.balance) return false;
         if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
-        return lastName != null ? lastName.equals(user.lastName) : user.lastName == null;
-
+        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
+        return true;
     }
 
     @Override

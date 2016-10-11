@@ -1,15 +1,9 @@
 package Module6;
 
 
-import java.util.Arrays;
+
 
 public final class ArrayUtils {
-    private int[] array;
-
-
-    public ArrayUtils(int[] array) {
-        this.array = array;
-    }
 
     public static int sum (int[] array){
         int sum = 0;

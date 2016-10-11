@@ -19,8 +19,8 @@ public class Main {
  //       long[] resSout = UserUtills.getUsersId(users);
  //       User[] resSout = UserUtills.paySalaryToUsers(users);
  //       User[] resSout = UserUtills.usersWithContitionalBalance(users, 1000);
- //       User[] resSout = UserUtills.uniqueUsers(users);
-        User[] resSout = UserUtills.deleteEmptyUsers(users);
+        User[] resSout = UserUtills.uniqueUsers(users);
+ //       User[] resSout = UserUtills.deleteEmptyUsers(users);
         for (int i = 0; i < resSout.length; i++){
             System.out.println(resSout[i]);
         }

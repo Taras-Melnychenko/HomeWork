@@ -4,9 +4,11 @@ package Module6;
 public class UserUtills {
     static User[] uniqueUsers(User[] users){
         for (int i = 0; i < users.length; i++){
-            for (int a = i+1; a < users.length; a++){
-                if (users[i].equals(users[a])&&users[i]!=null){
+            for (int a = i + 1; a < users.length; a++){
+ //               if(a>i){
+                    if (users[a] != null&& users[i] != null && users[i].equals(users[a])){ //NullPointException
                     users[a] = null;
+ //                   }
                 }
             }
         }

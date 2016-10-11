@@ -26,7 +26,7 @@ public class GoogleAPI implements API {
                 }
             }
             else {
-                if (room.equals(request) && hotel == room.getHotelName()) {
+                if (room.equals(request) && hotel.equalsIgnoreCase(room.getHotelName())) {
                     founded[index] = room;
                     System.out.println(founded[index]);
                     index++;

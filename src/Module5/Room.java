@@ -33,9 +33,6 @@ public class Room {
         if(person != 0) {
             if (person != room.person) return false;
         }
-        if(hotelName != null) {
-            if (!hotelName.equals(room.hotelName)) return false;
-        }
         if(cityName != null) {
             if (!cityName.equals(room.cityName)) return false;
         }
@@ -47,7 +44,6 @@ public class Room {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + price;
         result = 31 * result +person;
-        result = 31 * result + (hotelName != null ? hotelName.hashCode() : 0);
         result = 31 * result + (cityName != null ? cityName.hashCode() : 0);
         return result;
     }
