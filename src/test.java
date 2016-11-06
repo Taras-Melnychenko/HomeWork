@@ -30,5 +30,42 @@ public class test {
         list.add("bbb");
 
         System.out.println(list);
+        int[] arr = {1,21,3,0,5,2,9,4};
+        bubbleSort(arr);
+        for (int i=0; i<arr.length; i++){
+            System.out.print(arr[i]+"  ");
+        }
+
+        Map<String, String> map = new HashMap<>();
+        map.put("key", "value");
+        map.put("key", "value");
+        String res = map.get("key");
+        System.out.println(res);
+        Map map1 = new HashMap<>();
+        map1.put("key", "value");
+        String res1 = map.get("key");
+        System.out.println(res1);
+
+        Map<String, String> map2 = new HashMap<>();
+        map.put("key", "value");
+        map.put("key", "value");
+        map.put("key1", "value");
+        System.out.println("integer"+" "+ "map");
+
+
+        System.out.println(map2.keySet().size());
+
+    }
+    public static void bubbleSort(int[] arr){
+        for(int i = arr.length-1 ; i > 0 ; i--){
+            for(int j = 0 ; j < i ; j++){
+
+                if( arr[j] > arr[j+1] ){
+                    int tmp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = tmp;
+                }
+            }
+        }
     }
 }
