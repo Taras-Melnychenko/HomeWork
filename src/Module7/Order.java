@@ -1,9 +1,7 @@
 package Module7;
 
 
-import Module4.Currency;
-
-public class Order {
+public class Order implements Comparable<Order> {
     private long id;
     private int price;
     private Currency currency;
@@ -18,6 +16,15 @@ public class Order {
         this.itemName = itemName;
         this.shopIdentificator = shopIdentificator;
         this.user = user;
+    }
+
+    @Override
+    public int compareTo(Order o) {
+        if (this.getPrice() < o.getPrice())
+            return 1;
+        if (this.getPrice() > o.getPrice())
+            return -1;
+        else return 0;
     }
 
     public long getId() {
@@ -66,5 +73,17 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", price=" + price +
+                ", currency=" + currency +
+                ", itemName='" + itemName + '\'' +
+                ", shopIdentificator='" + shopIdentificator + '\'' +
+                ", user=" + user +
+                '}';
     }
 }
