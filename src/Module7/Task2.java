@@ -5,65 +5,117 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.*;
 
+
+
 public class Task2 {
+
+    //data from DB
+    private static String[] firstNames = {"Dima", "Vanya", "Lucy", "Jack", "Roman", "Tom", "Donald", "Sasha",
+            "Bob", "Ozzy"};
+    private static String[] lastNames = {"Ivanov", "Zuchenko", "Lue", "Johns", "Pears", "Hanks", "Tramp", "Grey",
+            "Dilan", "Ozborne"};
+    private static String[] itemNames = {"MackBook", "MP3player", "Ball", "Shop", "Country", "iPhone", "Vine", "Beer",
+            "Calculator", "Vodka"};
+    private static String[] cities = {"Kiyv", "Kiyv", "Odessa", "Baltimore", "Ilinois", "Kiyv", "Philadelfiya", "Rome",
+            "Odessa", "Kuba"};
+    private static String[] shopIndentificators = {"Accessories", "Accessories", "sport", "business", "Geografic",
+            "Accessories", "alc", "alc", "Accessories", "alc"};
+    private static int[] balances = {2000, 2000, 3500, 7770, 1500, 1000, 2330, 2220, 4600, 233};
+    private static int[] prices = {1000, 200, 5000, 7700, 200, 10, 33, 222, 777, 50};
+    private static Currency[] currencies = {Currency.UAH, Currency.USD, Currency.USD, Currency.USD, Currency.UAH,
+            Currency.USD, Currency.UAH, Currency.UAH, Currency.USD, Currency.UAH};
+
+
     public static void main(String[] args) {
-
-
-        User user = new User(11, "A", "B", "C", 1200);
-        User user1 = new User(12, "Q", "W", "E", 1300);
-        User user2 = new User(13, "Y", "T", "R", 1400);
-        User user3 = new User(14, "U", "I", "O", 1500);
-        User user4 = new User(15, "K", "L", "P", 1600);
-        User user5 = new User(16, "J", "H", "G", 1700);
-        User user6 = new User(17, "S", "D", "F", 1800);
-        User user7 = new User(18, "Z", "B", "C", 1900);
-        User user8 = new User(19, "X", "V", "N", 1000);
-        User user9 = new User(10, "A", "Q", "W", 11200);
-
-        Order order = new Order(21, 120, Currency.UAH, "F", "q", user);
-        Order order1 = new Order(22, 150, Currency.USD, "F", "q", user1);
-        Order order2 = new Order(23, 110, Currency.UAH, "F", "q", user2);
-        Order order3 = new Order(24, 140, Currency.UAH, "F", "q", user3);
-        Order order4 = new Order(25, 190, Currency.UAH, "F", "q", user4);
-        Order order5 = new Order(26, 100, Currency.USD, "F", "q", user5);
-        Order order6 = new Order(27, 1750, Currency.UAH, "F", "q", user6);
-        Order order7 = new Order(28, 1110, Currency.UAH, "F", "q", user7);
-        Order order8 = new Order(29, 2100, Currency.UAH, "F", "q", user8);
-        Order order9 = new Order(211, 200, Currency.USD, "F", "q", user9);
-
         List<Order> orders = new ArrayList<>();
-        orders.add(0, order);
-        orders.add(1, order1);
-        orders.add(2, order2);
-        orders.add(3, order3);
-        orders.add(4, order4);
-        orders.add(5, order5);
-        orders.add(6, order6);
-        orders.add(7, order7);
-        orders.add(8, order8);
-        orders.add(9, order9);
-      //  System.out.println(orders);
+        for (int i = 0; i < 10; i++) {
+            orders.add(new Order(i + 100, prices[i], currencies[i], itemNames[i], shopIndentificators[i],
+                    new User(i + 1000, firstNames[i], lastNames[i], cities[i], balances[i])));
+        }
+
+        //sort list by Order price in decrease order
+        orders.sort(new Comparator<Order>() {
+            @Override
+            public int compare(Order o1, Order o2) {
+                return o2.getPrice() - o1.getPrice();
+            }
+        });
         System.out.println(orders);
-        System.out.println(ordersDecrease(orders));
+
+        //sort list by Order price in increase order AND User city
+        orders.sort(new Comparator<Order>() {
+            @Override
+            public int compare(Order o1, Order o2) {
+                if (o1.getPrice() == o2.getPrice())
+                    return o1.getUser().getCity().compareTo(o2.getUser().getCity());
+                return o1.getPrice() - o2.getPrice();
+            }
+        });
+        System.out.println(orders);
+
+        //sort list by Order itemName AND ShopIdentificator AND User city
+
+        orders.sort(new Comparator<Order>(){
+            @Override
+            public int compare(Order o1, Order o2) {
+                if (o1.getItemName().equals(o2.getItemName()))
+                    if (o1.getShopIdentificator().equals(o2.getShopIdentificator()))
+                        return o1.getUser().getCity().compareTo(o2.getUser().getCity());
+                    else return o1.getShopIdentificator().compareTo(o2.getShopIdentificator());
+                else return o1.getItemName().compareTo(o2.getItemName());
+            }
+        });
+        System.out.println(orders);
+
+        //delete duplicates from the list
+        Set<Order> uniqList = new HashSet<>(orders);
+        System.out.println(uniqList);
 
 
+        //delete items where price less than 1500
+        List<Order> copyOrders = new ArrayList<>(orders);
+        Iterator<Order> iterator = copyOrders.iterator();
+        while (iterator.hasNext())
+            if (iterator.next().getPrice() < 1500)
+                iterator.remove();
+        System.out.println(copyOrders);
 
-    }
+
+        //separate list for two list - orders in USD and UAH
+        List<Order> ListUSD = new ArrayList<>();
+        List<Order> ListUAN = new ArrayList<>();
+        for (Order order : orders)
+            if (order.getCurrency().equals(Currency.UAH))
+                ListUAN.add(order);
+            else
+                ListUSD.add(order);
+        System.out.println(ListUAN);
+        System.out.println(ListUSD);
 
 
+        //separate list for as many lists as many unique cities are in User
+        List<List<Order>> uniqueCityList = new ArrayList<>();
+        {
+            Set<String> uniqueCities = new HashSet<>();
+            for (Order o : orders) {
+                String currentCity = o.getUser().getCity();
+                List<Order> currentList = new ArrayList<>();
+                currentList.add(o);
+                // check if city's name unique add this Order in uniqueCityList
+                if (uniqueCities.add(currentCity))
+                    uniqueCityList.add(currentList);
+                    // if city's name not unique find it in uniqueCityList
+                else {
+                    int index = 0;
+                    for (List<Order> uniqueCity : uniqueCityList)
+                        if (uniqueCity.get(0).getUser().getCity().equals(currentCity)) {
+                            uniqueCityList.get(index).add(o);
+                            break;
+                        } else index++;
 
-
-
-    static List<Order> ordersDecrease (List<Order> orders){
-        for(int i = orders.size()-1 ; i > 0 ; i--){
-            for(int j = 0 ; j < i ; j++){
-                if( orders.get(j).getPrice() > orders.get(j+1).getPrice() ){
-                    Order tmp = orders.get(j);
-                    orders.set(j, orders.get(j+1));
-                    orders.set(j+1, tmp);
                 }
             }
         }
-        return orders;
+        System.out.println(uniqueCityList);
     }
 }
