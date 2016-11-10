@@ -1,7 +1,7 @@
 package Module10;
 
 public class Task4 extends Exception {
-
+//
     static private void g() throws Task2 {
         throw new Task2("My Exception");
     }

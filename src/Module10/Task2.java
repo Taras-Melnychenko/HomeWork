@@ -1,6 +1,6 @@
 package Module10;
 
-
+//
 public class Task2 extends NullPointerException {
     private String inputString;
 
